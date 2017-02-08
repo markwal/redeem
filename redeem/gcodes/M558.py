@@ -32,3 +32,17 @@ class M558(GCodeCommand):
 
     def get_description(self):
         return "Set probe type"
+
+    def get_long_description(self):
+        return ("A Z probe may be a switch (the default) an IR proximity"
+                "sensor, or some other device. This selects which to use. P0"
+                "gives a switch. P1 gives an unmodulated IR probe, or any other"
+                "probe type that emulates an unmodulated IR probe (probe output"
+                "is an analog signal that rises with decreasing nozzle height"
+                "above the bed). If there is a control signal to the probe, it"
+                "is driven high when the probe type is P1. P2 specifies a"
+                "modulated IR probe, where the modulation is commanded directly"
+                "by the main board firmware using the control signal to the"
+                "probe. P3 selects an alternative Z probe by driving the control"
+                "signal to the probe low. See also G31 and G32.  At the moment"
+                "only P0 is implemented.")
