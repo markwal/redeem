@@ -468,6 +468,7 @@ class Redeem:
 
         self.printer.path_planner = PathPlanner(self.printer, pru_firmware)
         for axis in printer.steppers.keys():
+            logging.info("Setting up axis {}".format(axis))
             i = Printer.axis_to_index(axis)
 
             # Sometimes soft_end_stop aren't defined to be at the exact hardware boundary.
@@ -519,7 +520,8 @@ class Redeem:
                 for i, a in enumerate(['X','Y','Z']):
                     printer.path_planner.home_pos[a] = xyz[i]
 
-                logging.info("Home position = %s"%str(printer.path_planner.home_pos))
+            logging.info("Home position = %s"%str(printer.path_planner.home_pos))
+            logging.info("Center offset = %s"%str(printer.path_planner.center_offset))
 
 
         # Read end stop value again now that PRU is running
