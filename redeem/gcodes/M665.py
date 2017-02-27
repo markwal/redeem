@@ -26,7 +26,7 @@ class M665(GCodeCommand):
                 Delta.L = float(g.get_value_by_letter("L"))
             if g.has_letter("R"):
                 Delta.r = float(g.get_value_by_letter("R"))
-                
+
             self.printer.path_planner.native_planner.delta_bot.setMainDimensions(Delta.Hez, Delta.L, Delta.r)
             #self.printer.path_planner.native_planner.delta_bot.recalculate()
 
@@ -36,7 +36,7 @@ class M665(GCodeCommand):
     def get_long_description(self):
         return ("L sets the length of the arm. "
                 "If the objects printed are too small, "
-                "try increasing(?) the length of the arm\n"
+                "try decreasing the length of the arm\n"
                 "R sets the radius of the towers. "
                 "If the measured points are too convex, "
                 "try increasing the radius")
