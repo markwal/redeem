@@ -49,22 +49,25 @@ pathplanner = Extension(
     extra_compile_args = [
         '-std=c++0x',
         '-g',
-        '-O2',
+        '-O3',
         '-fpermissive',
         '-D_GLIBCXX_USE_NANOSLEEP',
         '-DBUILD_PYTHON_EXT=1',
         '-Wno-write-strings',
-        '-Wno-maybe-uninitialized']
+        '-Wno-maybe-uninitialized',
+        '-UNDEBUG']
 )
 
 setup(
     name = "Redeem",
-    version = "1.3.0",
+    version = "1.3.1",
     packages = find_packages(exclude=["redeem/path_planner"]),
     data_files=[
         ('redeem/firmware', [
-            'redeem/firmware/firmware_runtime.p',
-            'redeem/firmware/firmware_endstops.p']),
+            'redeem/firmware/firmware_runtime.c',
+            'redeem/firmware/firmware_endstops.p',
+            'redeem/firmware/AM335x_PRU.cmd',
+            'redeem/firmware/image.cmd']),
         ('redeem/configs', [
             'configs/default.cfg',
             'configs/thing.cfg',

@@ -446,18 +446,18 @@ class Redeem:
 
         # Create the firmware compiler
         pru_firmware = PruFirmware(
-            dirname + "/firmware/firmware_runtime.p",
+            dirname + "/firmware/firmware_runtime.c",
             dirname + "/firmware/firmware_runtime.bin",
             dirname + "/firmware/firmware_endstops.p",
             dirname + "/firmware/firmware_endstops.bin",
-            self.printer, "/usr/bin/pasm")
+            self.printer, "/usr/bin/clpru", "/usr/bin/pasm",
+            dirname + "/firmware/AM335x_PRU.cmd",
+            dirname + "/firmware/image.cmd")
 
 
         printer.move_cache_size = printer.config.getfloat('Planner', 'move_cache_size')
         printer.print_move_buffer_wait = printer.config.getfloat('Planner', 'print_move_buffer_wait')
         printer.max_buffered_move_time = printer.config.getfloat('Planner', 'max_buffered_move_time')
-
-        printer.max_length = printer.config.getfloat('Planner', 'max_length')
 
         self.printer.processor = GCodeProcessor(self.printer)
         self.printer.plugins = PluginsController(self.printer)
